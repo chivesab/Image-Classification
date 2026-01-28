@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  notebook-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff black nbqa
+    - name: Lint Notebooks with Ruff via nbqa
+      run: |
+        nbqa ruff .
+    - name: Format Check Notebooks with Black via nbqa
+      run: |
+        nbqa black --check .

@@ -1,0 +1,30 @@
+[project]
+name = "Image-Classification"
+version = "0.1.0"
+description = "Modernized Data Science repository"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+dependencies = [
+    "jupyter",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib"
+]
+requires-python = ">=3.9"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"] # Ignore line length in notebooks often
+
+[tool.nbqa.addopts]
+ruff = ["--fix"]
